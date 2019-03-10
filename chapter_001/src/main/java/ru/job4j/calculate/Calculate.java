@@ -5,8 +5,7 @@ package ru.job4j.calculate;
 *@since 05.03.2019
 *@version 1
 */
-public class Calculate
-{
+public class Calculate {
 /**
 * Method Main
 * @param args params.
