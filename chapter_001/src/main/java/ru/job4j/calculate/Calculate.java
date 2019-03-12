@@ -1,6 +1,6 @@
 package ru.job4j.calculate;
 /**
-*Calculate Класс вывода hello world
+*Calculate Класс вывода hello woirld
 *@author rMarkov
 *@since 05.03.2019
 *@version 1
@@ -20,6 +20,6 @@ public class Calculate {
 	* @return Echo plus your name.
 	*/
 	 public String echo(String name) {
-	 	return "Echo, echo, echo : " + name;
+	    return "Echo, echo, echo : " + name;
 	 }
 }
