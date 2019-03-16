@@ -34,7 +34,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void whenTwoMultileThreeThenSix() {
+    public void whenTwoMultipleThreeThenSix() {
         Calculator calc = new Calculator();
         double result = calc.multiple(2, 3);
         double expected = 6;
