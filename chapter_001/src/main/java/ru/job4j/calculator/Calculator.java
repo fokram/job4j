@@ -13,7 +13,7 @@ public class Calculator {
    * @return double сумма
    */
   public double add (double first, double second) {
-  	return first+second;
+    return first + second;
   }
   /**
    * Method subtract
@@ -22,7 +22,7 @@ public class Calculator {
    * @return double разница
    */
   public double subtract (double first, double second) {
-  	return first-second;
+    return first - second;
   }
   /**
    * Method div
@@ -31,7 +31,7 @@ public class Calculator {
    * @return double частное
    */
   public double div (double first, double second) {
-  	return first/second;
+    return first / second;
   }
   /**
    * Method multiple
@@ -40,6 +40,6 @@ public class Calculator {
    * @return double произведение
    */
   public double multiple (double first, double second) {
-  	return first*second;
+    return first * second;
   }
 }
