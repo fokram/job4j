@@ -1,6 +1,6 @@
 package ru.job4j.calculate;
 /**
-*Calculate Класс вывода hello woirld
+*Calculate Класс вывода hello world
 *@author rMarkov
 *@since 05.03.2019
 *@version 1
