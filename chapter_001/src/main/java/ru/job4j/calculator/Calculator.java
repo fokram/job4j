@@ -12,7 +12,7 @@ public class Calculator {
    * @param second слагаемое
    * @return double сумма
    */
-  public double add (double first, double second) {
+  public double add(double first, double second) {
     return first + second;
   }
   /**
@@ -21,7 +21,7 @@ public class Calculator {
    * @param second вычитаемое
    * @return double разница
    */
-  public double subtract (double first, double second) {
+  public double subtract(double first, double second) {
     return first - second;
   }
   /**
@@ -30,7 +30,7 @@ public class Calculator {
    * @param second делитель
    * @return double частное
    */
-  public double div (double first, double second) {
+  public double div(double first, double second) {
     return first / second;
   }
   /**
@@ -39,7 +39,7 @@ public class Calculator {
    * @param second множитель
    * @return double произведение
    */
-  public double multiple (double first, double second) {
+  public double multiple(double first, double second) {
     return first * second;
   }
 }
