@@ -33,6 +33,7 @@ public class Tracker {
         for (int n = 0; n < this.position; n++) {
             if (items[n].getId().equals(id)) {
                 items[n] = item;
+                items[n].setId(id);
                 result = true;
                 break;
             }
