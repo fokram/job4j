@@ -28,7 +28,7 @@ public class Item {
         this.name = name;
     }
 
-    public String getdesc() {
+    public String getDesc() {
         return desc;
     }
 
