@@ -1,5 +1,9 @@
 package ru.job4j.tracker;
 
+/**
+ * @version 1
+ * @since 12.04.2019
+ */
 public class StartUI {
     /**
      * Константа меню для добавления новой заявки.
@@ -40,10 +44,6 @@ public class StartUI {
      */
     private final Tracker tracker;
 
-    /**
-     * Текущая номер заявки.
-     */
-    private int position = 0;
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
@@ -90,11 +90,10 @@ public class StartUI {
 
     /**
      * Метод реализует отображение заявки
+     * @param item на входе заявка
      */
     private void showItem(Item item) {
-        System.out.println("ID заявки: " + item.getId() + " "
-                         + "Имя заявки: " + item.getName() + " "
-                         + "Описание заявки: " + item.getDesc());
+        System.out.println(String.format("ID заявки: %s; Имя заявки: %s; Описание заявки: %s", item.getId(), item.getName(), item.getDesc()));
     }
 
     /**
@@ -134,6 +133,8 @@ public class StartUI {
         String id = this.input.ask("Введите id удаляемой заявки :");
         if (this.tracker.delete(id)) {
             System.out.println("------------ Заявка " + id + " успешно удалена-----------");
+        } else {
+            System.out.println("------------ Заявка " + id + " не найдена-----------");
         }
     }
 

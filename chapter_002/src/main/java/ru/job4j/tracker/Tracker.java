@@ -19,8 +19,9 @@ public class Tracker {
 
     /**
      * Метод реализаущий добавление заявки в хранилище
-     *
      * @param item новая заявка
+     *
+     * @return возвращаем заявку
      */
     public Item add(Item item) {
         item.setId(this.generateId());
@@ -28,6 +29,13 @@ public class Tracker {
         return item;
     }
 
+    /**
+     * Метод реализаущий правку заявки в хранилище
+     * @param id идентификатор заявки для изменения
+     * @param item заявка взамен предыдущей
+     *
+     * @return возвращаем true если замена успешна и наоборот
+     */
     public boolean replace(String id, Item item) {
         boolean result = false;
         for (int n = 0; n < this.position; n++) {
@@ -41,6 +49,12 @@ public class Tracker {
         return result;
     }
 
+    /**
+     * Метод реализаущий удаление заявки в хранилище
+     * @param id идентификатор заявки для удаления
+     *
+     * @return возвращаем true если удаление успешна и наоборот
+     */
     public boolean delete(String id) {
         int n = 0;
         boolean result = false;
@@ -56,10 +70,19 @@ public class Tracker {
         return result;
     }
 
+    /**
+     * Метод реализаущий отдающий все заполненные заявки
+     */
     public Item[] findAll() {
         return Arrays.copyOf(this.items, this.position);
     }
 
+    /**
+     * Метод реализаущий поиск списка заявок по имени
+     * @param key имя заявки
+     *
+     * @return возвращаем массив найденных заявок
+     */
     public Item[] findByName(String key) {
         Item[] matchedItems = new Item[this.position];
         int n = 0;
@@ -74,6 +97,12 @@ public class Tracker {
         return Arrays.copyOf(matchedItems, n);
     }
 
+    /**
+     * Метод реализаущий поиск заявок по id
+     * @param id идентификатор заявки
+     *
+     * @return возвращаем найденную заявку
+     */
     public Item findById(String id) {
         Item result = null;
         for (int i = 0; i < position; i++) {
