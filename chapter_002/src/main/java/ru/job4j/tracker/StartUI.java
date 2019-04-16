@@ -152,7 +152,7 @@ public class StartUI {
      * Метод реализует поиск заявки по имени.
      */
     private void findByNameItem() {
-        System.out.println("------------ Поиск заявки по имени заявки--------------");
+        System.out.println("------------ Поиск заявки по имени--------------");
         String name = this.input.ask("Введите имя заявки :");
         Item[] items = this.tracker.findByName(name);
         for (Item item:items) {
