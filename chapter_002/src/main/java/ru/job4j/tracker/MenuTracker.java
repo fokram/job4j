@@ -175,6 +175,22 @@ public class MenuTracker {
         }
     }
 
+    public class Exit implements UserAction {
+        @Override
+        public int key() {
+            return 6;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+        }
+
+        @Override
+        public String info() {
+            return "Exit.";
+        }
+    }
+
     /**
      * Метод заполняет массив.
      */
@@ -185,6 +201,7 @@ public class MenuTracker {
         this.actions.add(new DeleteItem());
         this.actions.add(new FindItemById());
         this.actions.add(new FindItemsByName());
+        this.actions.add(new Exit());
     }
 
     /**

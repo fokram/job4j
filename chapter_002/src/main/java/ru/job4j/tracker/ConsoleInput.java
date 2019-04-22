@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -17,5 +18,20 @@ public class ConsoleInput implements Input {
         Scanner scanner = new Scanner(System.in);
         System.out.println(question);
         return scanner.nextLine();
+    }
+    public int ask(String question, List<Integer> range) throws MenuOutException {
+        int answer = Integer.valueOf(ask(question));
+        boolean isInMenu = false;
+        for (int val : range) {
+            if (answer == val) {
+                isInMenu = true;
+                break;
+            }
+        }
+        if (isInMenu) {
+            return answer;
+        } else {
+            throw new MenuOutException("Out of menu range.");
+        }
     }
 }

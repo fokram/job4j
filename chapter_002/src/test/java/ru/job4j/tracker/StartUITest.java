@@ -20,7 +20,8 @@ public class StartUITest {
             .append("2. Edit Item.\n")
             .append("3. Delete Item.\n")
             .append("4. Find item by Id.\n")
-            .append("5. Find all item by name.\n");
+            .append("5. Find all item by name.\n")
+            .append("6. Exit.\n");
 
     // получаем ссылку на стандартный вывод в консоль.
     private final PrintStream stdout = System.out;

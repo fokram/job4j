@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @version 1
  * @since 12.04.2019
@@ -15,6 +18,8 @@ public class StartUI {
      * Хранилище заявок.
      */
     private final Tracker tracker;
+
+    private List<Integer> range = new ArrayList<>();
 
     /**
      * Конструтор инициализирующий поля.
@@ -32,9 +37,12 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         menu.fillActions();
+        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+            this.range.add(i);
+        }
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("select:")));
+            menu.select((input.ask("select:", this.range)));
         } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
@@ -43,6 +51,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
