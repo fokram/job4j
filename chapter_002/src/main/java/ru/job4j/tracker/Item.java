@@ -4,12 +4,10 @@ public class Item {
     private String id;
     private String name;
     private String desc;
-    private long time;
 
-    public Item(String name, String desc, long time) {
+    public Item(String name, String desc) {
         this.name = name;
         this.desc = desc;
-        this.time = time;
     }
 
     public String getId() {
@@ -34,13 +32,5 @@ public class Item {
 
     public void setDesc(String desc) {
         this.desc = desc;
-    }
-
-    public long getTime() {
-        return time;
-    }
-
-    public void setTime(long time) {
-        this.time = time;
     }
 }

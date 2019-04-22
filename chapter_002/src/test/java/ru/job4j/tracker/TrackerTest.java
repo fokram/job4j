@@ -8,8 +8,7 @@ public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
         Tracker tracker = new Tracker();
-        long created = System.currentTimeMillis();
-        Item item = new Item("test1", "testDescription", created);
+        Item item = new Item("test1", "testDescription");
         tracker.add(item);
         Item result = tracker.findById(item.getId());
         assertThat(result.getName(), is(item.getName()));
@@ -18,11 +17,11 @@ public class TrackerTest {
     @Test
     public void whenReplaceNameThenReturnNewName() {
         Tracker tracker = new Tracker();
-        Item previous = new Item("test1", "testDescription", 123L);
+        Item previous = new Item("test1", "testDescription");
         // Добавляем заявку в трекер. Теперь в объект проинициализирован id.
         tracker.add(previous);
         // Создаем новую заявку.
-        Item next = new Item("test2", "testDescription2", 1234L);
+        Item next = new Item("test2", "testDescription2");
         // Проставляем старый id из previous, который был сгенерирован выше.
         next.setId(previous.getId());
         // Обновляем заявку в трекере.
@@ -33,13 +32,13 @@ public class TrackerTest {
     @Test
     public void whenFindAllWithTwoNullsReturnOtherNotNull() {
         Tracker tracker = new Tracker();
-        Item item = new Item("first", "firstDescription", 1L);
+        Item item = new Item("first", "firstDescription");
         tracker.add(item);
-        item = new Item("second", "secondDescription", 1L);
+        item = new Item("second", "secondDescription");
         tracker.add(item);
-        item = new Item("third", "thirdDescription", 1L);
+        item = new Item("third", "thirdDescription");
         tracker.add(item);
-        item = new Item("third", "fourthDescription", 1L);
+        item = new Item("third", "fourthDescription");
         tracker.add(item);
 
         Item[] itemForDelete = tracker.findByName("third");

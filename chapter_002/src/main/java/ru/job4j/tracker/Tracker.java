@@ -23,6 +23,11 @@ public class Tracker {
      *
      * @return возвращаем заявку
      */
+
+    public void showItem(Item item) {
+        System.out.println(String.format("ID заявки: %s; Имя заявки: %s; Описание заявки: %s", item.getId(), item.getName(), item.getDesc()));
+    }
+
     public Item add(Item item) {
         item.setId(this.generateId());
         this.items[this.position++] = item;
