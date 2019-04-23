@@ -28,10 +28,9 @@ public class ConsoleInput implements Input {
                 break;
             }
         }
-        if (isInMenu) {
-            return answer;
-        } else {
+        if (!isInMenu) {
             throw new MenuOutException("Out of menu range.");
         }
+        return answer;
     }
 }
