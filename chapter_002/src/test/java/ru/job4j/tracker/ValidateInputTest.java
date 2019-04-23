@@ -24,9 +24,16 @@ public class ValidateInputTest {
     private final ByteArrayOutputStream mem = new ByteArrayOutputStream();
     private final PrintStream out = System.out;
 
+    private List<Integer> range = new ArrayList<>();
     @Before
     public void loadMem() {
         System.setOut(new PrintStream(this.mem));
+
+        MenuTracker menu = new MenuTracker(new ConsoleInput(), new Tracker());
+        menu.fillActions();
+        for (int i = 0; i < menu.getActionsLentgh(); i++) {
+            this.range.add(i);
+        }
     }
 
     @After
@@ -39,11 +46,25 @@ public class ValidateInputTest {
         ValidateInput input = new ValidateInput(
                 new StubInput(new String[] {"invalid", "1"})
         );
-        input.ask("Enter", new ArrayList<>(1));
+        input.ask("Enter", this.range);
         assertThat(
                 this.mem.toString(),
                 is(
-                        String.format("Please enter only menu point in number\n")
+                        String.format("Please enter only menu point in number.\n")
+                )
+        );
+    }
+
+    @Test
+    public void whenNoInMenuInput() {
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[] {"99", "1"})
+        );
+        input.ask("Enter", this.range);
+        assertThat(
+                this.mem.toString(),
+                is(
+                        String.format("Out of menu range.\n")
                 )
         );
     }

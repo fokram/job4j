@@ -19,9 +19,9 @@ public class ValidateInput implements Input {
                 answer = input.ask(question, range);
                 gotIt = true;
             } catch (NumberFormatException nfe) {
-                System.out.println("Please enter only menu point in number");
+                System.out.println("Please enter only menu point in number.");
             } catch (MenuOutException moe) {
-                System.out.println("Please enter only menu point in number");
+                System.out.println(moe.getMessage());
             }
         } while (!gotIt);
         return answer;
