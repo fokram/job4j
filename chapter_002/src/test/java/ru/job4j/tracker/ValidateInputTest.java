@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import java.io.ByteArrayOutputStream;
@@ -24,16 +25,10 @@ public class ValidateInputTest {
     private final ByteArrayOutputStream mem = new ByteArrayOutputStream();
     private final PrintStream out = System.out;
 
-    private List<Integer> range = new ArrayList<>();
+    private List<Integer> range = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6));
     @Before
     public void loadMem() {
         System.setOut(new PrintStream(this.mem));
-
-        MenuTracker menu = new MenuTracker(new ConsoleInput(), new Tracker());
-        menu.fillActions();
-        for (int i = 0; i < menu.getActionsLentgh(); i++) {
-            this.range.add(i);
-        }
     }
 
     @After
