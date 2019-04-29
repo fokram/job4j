@@ -137,25 +137,28 @@ public class MenuTracker {
     }
 
     public final class Exit extends BaseAction {
-        public Exit(final int key, final String name) {
+        private final StartUI ui;
+        public Exit(final int key, final String name, StartUI ui) {
             super(key, name);
+            this.ui = ui;
         }
         @Override
         public void execute(Input input, Tracker tracker) {
+            this.ui.stop();
         }
     }
 
     /**
      * Метод заполняет массив.
      */
-    public void fillActions() {
+    public void fillActions(StartUI ui) {
         this.actions.add(new AddItem(0, "Add new Item."));
         this.actions.add(new ShowItems(1, "Show all items."));
         this.actions.add(new UpdateItem(2, "Edit Item."));
         this.actions.add(new DeleteItem(3, "Delete Item."));
         this.actions.add(new FindItemById(4, "Find item by Id."));
         this.actions.add(new FindItemsByName(5, "Find all item by name."));
-        this.actions.add(new Exit(6, "Exit."));
+        this.actions.add(new Exit(6, "Exit.", ui));
     }
 
     /**

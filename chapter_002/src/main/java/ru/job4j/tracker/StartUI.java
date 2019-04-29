@@ -30,20 +30,26 @@ public class StartUI {
         this.input = input;
         this.tracker = tracker;
     }
+    private boolean working = true;
+
+    public void stop() {
+        this.working = false;
+    }
 
     /**
      * Основой цикл программы.
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        menu.fillActions();
+        menu.fillActions(this);
         for (int i = 0; i < menu.getActionsLentgh(); i++) {
             this.range.add(i);
         }
         do {
             menu.show();
             menu.select((input.ask("select:", this.range)));
-        } while (!"y".equals(this.input.ask("Exit?(y): ")));
+        } while (this.working
+                && !"y".equals(this.input.ask("Exit?(y): ")));
     }
 
     /**
