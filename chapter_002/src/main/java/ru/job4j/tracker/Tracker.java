@@ -15,7 +15,8 @@ public class Tracker {
 
     /**
      * Указатель ячейки для новой заявки.
-     */private int position = 0;
+     */
+    private int position = 0;
 
     /**
      * Метод реализаущий добавление заявки в хранилище
