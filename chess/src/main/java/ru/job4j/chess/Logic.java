@@ -1,7 +1,6 @@
 package ru.job4j.chess;
 
-import ru.job4j.chess.firuges.Cell;
-import ru.job4j.chess.firuges.Figure;
+import ru.job4j.chess.firuges.*;
 
 import java.util.Optional;
 
@@ -20,29 +19,31 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
-    public boolean move(Cell source, Cell dest) {
+    public boolean move(Cell source, Cell dest) throws ImpossibleMoveException, OccupiedWayException, FigureNotFoundException {
         boolean rst = false;
         int index = this.findBy(source);
-        if (index != -1) {
-            Cell[] steps = this.figures[index].way(source, dest);
-            boolean isWayClear = true;
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                for (Cell step : steps) {
-                    for (Figure figure : this.figures) {
-                        if (figure.position().y == step.y && figure.position().x == step.x) {
-                            isWayClear = false;
-                            break;
-                        }
-                    }
-                    if (!isWayClear) {
-                        break;
-                    }
-                }
-                if (isWayClear) {
-                    rst = true;
-                    this.figures[index] = this.figures[index].copy(dest);
+        if (index == -1) {
+            throw new FigureNotFoundException("В данной клетке нет фигуры.");
+        }
+        Cell[] steps = this.figures[index].way(source, dest);
+        boolean isWayClear = true;
+        if (steps.length == 0 || !steps[steps.length - 1].equals(dest)) {
+            throw new ImpossibleMoveException("Эта фигура так не ходит");
+        }
+        for (Cell step : steps) {
+            for (Figure figure : this.figures) {
+                if (figure.position().y == step.y && figure.position().x == step.x) {
+                    isWayClear = false;
+                    break;
                 }
             }
+            if (!isWayClear) {
+                throw new OccupiedWayException("На пути слодования есть другие фигуры");
+            }
+        }
+        if (isWayClear) {
+            rst = true;
+            this.figures[index] = this.figures[index].copy(dest);
         }
         return rst;
     }

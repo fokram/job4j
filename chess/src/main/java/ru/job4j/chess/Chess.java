@@ -12,8 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import ru.job4j.chess.firuges.Cell;
-import ru.job4j.chess.firuges.Figure;
+import ru.job4j.chess.firuges.*;
 import ru.job4j.chess.firuges.black.*;
 import ru.job4j.chess.firuges.white.*;
 
@@ -60,8 +59,18 @@ public class Chess extends Application {
         );
         rect.setOnMouseReleased(
                 event -> {
-                    if (logic.move(this.findBy(momento.getX(), momento.getY()), this.findBy(event.getX(), event.getY()))) {
-                        rect.setX(((int) event.getX() / 40) * 40 + 5)   ;
+                    boolean isSuccessStep = false;
+                    try{isSuccessStep = logic.move(this.findBy(momento.getX(), momento.getY()), this.findBy(event.getX(), event.getY()));
+
+                    } catch (ImpossibleMoveException ime) {
+                        System.out.println("Эта фигура так не ходит");
+                    } catch (OccupiedWayException owe) {
+                        System.out.println("По этому пути пройти нельзя");
+                    } catch (FigureNotFoundException fnf) {
+                        System.out.println("Тут нет фигуры");
+                    }
+                    if (isSuccessStep) {
+                        rect.setX(((int) event.getX() / 40) * 40 + 5);
                         rect.setY(((int) event.getY() / 40) * 40 + 5);
                     } else {
                         rect.setX(((int) momento.getX() / 40) * 40 + 5);

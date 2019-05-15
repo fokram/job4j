@@ -1,8 +1,6 @@
 package ru.job4j.chess.firuges.black;
 
-import ru.job4j.chess.firuges.Cell;
-import ru.job4j.chess.firuges.Figure;
-import ru.job4j.chess.firuges.ImposibleMoveException;
+import ru.job4j.chess.firuges.*;
 
 import static java.lang.Math.abs;
 
@@ -25,7 +23,7 @@ public class PawnBlack implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) throws ImposibleMoveException {
+    public Cell[] way(Cell source, Cell dest) {
         int increment;
         Cell[] steps = new Cell[0];
         //определяем направление движения по доске(вперед или назад относительно координат
@@ -41,9 +39,6 @@ public class PawnBlack implements Figure {
                 steps[i] = Cell.findByXY(source.x, source.y + (i + 1) * increment);
             }
         }
-//        else {
-//            throw new ImposibleMoveException("Так ходить нельзя");
-//        }
         return steps;
     }
 
