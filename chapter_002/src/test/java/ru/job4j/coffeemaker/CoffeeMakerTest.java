@@ -21,4 +21,8 @@ public class CoffeeMakerTest {
         int[] expected = new int[] {10, 5, 2};
         assertThat(changes, is(expected));
     }
+
+    public static void main(String[] args) {
+
+    }
 }
