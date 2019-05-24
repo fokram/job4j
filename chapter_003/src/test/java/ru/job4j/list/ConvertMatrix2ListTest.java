@@ -12,7 +12,7 @@ public class ConvertMatrix2ListTest {
         ConvertMatrix2List list = new ConvertMatrix2List();
         int[][] input = {
                 {1, 2},
-                {3, 0}
+                {3, 4}
         };
         List<Integer> expect = Arrays.asList(
                 1, 2, 3, 4
