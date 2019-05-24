@@ -8,14 +8,6 @@ import java.util.List;
 public class ConvertList2Array {
 
     public int[][] toArray(List<Integer> list, int rows) {
-//        int cells = (int) Math.ceil(list.size() / (float) rows);
-//        int[][] array = new int[rows][cells];
-//        for (int i = 0; i < rows; i++) {
-//             array[i] = convertIntegerArrayToInt(list.subList(i * cells, Math.min(i * cells + cells, list.size())), cells);
-//        }
-//        return array;
-//
-
         int cells = (int) Math.ceil(list.size() / (float) rows);
         int[][] array = new int[rows][cells];
         int j = 0;
