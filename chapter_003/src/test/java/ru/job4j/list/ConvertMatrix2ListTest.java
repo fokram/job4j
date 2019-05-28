@@ -19,5 +19,6 @@ public class ConvertMatrix2ListTest {
         );
         List<Integer> result = list.toList(input);
         assertThat(result, is(expect));
+
     }
 }
