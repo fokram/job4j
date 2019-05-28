@@ -12,14 +12,4 @@ public class ConvertMatrix2List {
         }
         return list;
     }
-    public static void main(String[] args) {
-        TreeSet <String> hs = new TreeSet<String>();
-        hs.add("alfa");
-        hs.add("betta");
-        hs.add("gamma");
-        hs.add("delta");
-        hs.add("epsilon");
-//        hs.add(1, "delta");
-        System.out.println(hs);
-    }
 }
