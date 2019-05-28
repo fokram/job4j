@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -42,7 +43,7 @@ public class StartUITest {
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});   //создаём StubInput с последовательностью действий
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
-        assertThat(tracker.findAll()[0].getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
+        assertThat(tracker.findAll().get(0).getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
 
     @Test
@@ -63,7 +64,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("test1 name", "desc1"));
         item = tracker.add(new Item("test2 name", "desc2"));
         item = tracker.add(new Item("test3 name", "desc3"));
-        Item[] items = tracker.findByName("test2 name");
+        List<Item> items = tracker.findByName("test2 name");
         for (Item findItem:items) {
             item = findItem;
         }

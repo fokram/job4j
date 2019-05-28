@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -17,12 +20,12 @@ public class TrackerSingletonTest {
         item = new Item("third", "fourthDescription");
         tracker.add(item);
 
-        Item[] itemForDelete = tracker.findByName("third");
+        List<Item> itemForDelete = tracker.findByName("third");
         for (Item i:itemForDelete) {
             tracker.delete(i.getId());
         }
         Tracker tracker1 = TrackerSingleton1.INSTANCE.tracker;
-        assertThat(tracker1.findAll().length, is(2));
+        assertThat(tracker1.findAll().size(), is(2));
     }
 
     @Test
@@ -38,7 +41,7 @@ public class TrackerSingletonTest {
         tracker.add(item);
 
         Tracker tracker2 = TrackerSingleton2.getInstance();
-        assertThat(tracker2.findAll().length, is(4));
+        assertThat(tracker2.findAll().size(), is(4));
     }
 
     @Test
@@ -52,7 +55,7 @@ public class TrackerSingletonTest {
         tracker.add(item);
 
         Tracker tracker3 = TrackerSingleton3.getInstance();
-        assertThat(tracker3.findAll().length, is(3));
+        assertThat(tracker3.findAll().size(), is(3));
     }
 
     @Test
@@ -70,6 +73,6 @@ public class TrackerSingletonTest {
         tracker.add(item);
 
         Tracker tracker4 = TrackerSingleton4.getInstance();
-        assertThat(tracker4.findAll().length, is(5));
+        assertThat(tracker4.findAll().size(), is(5));
     }
 }

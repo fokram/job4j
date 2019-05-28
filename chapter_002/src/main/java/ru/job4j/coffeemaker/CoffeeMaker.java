@@ -7,7 +7,7 @@ public class CoffeeMaker {
         if (bill >= cash) {
             return null;
         }
-        int[] coins = new int[] {10,5,2,1};
+        int[] coins = new int[] {10, 5, 2, 1};
         int[] changes = new int[500];
         int i = 0;
         while (cash - bill > 0) {

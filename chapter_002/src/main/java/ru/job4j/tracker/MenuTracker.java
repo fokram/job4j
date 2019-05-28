@@ -77,7 +77,7 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Поиск заявки по имени --------------");
             String name = input.ask("Введите имя заявки :");
-            Item[] items = tracker.findByName(name);
+            List<Item> items = tracker.findByName(name);
             for (Item item:items) {
                 tracker.showItem(item);
             }

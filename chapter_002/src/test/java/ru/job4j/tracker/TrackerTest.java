@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -41,10 +44,10 @@ public class TrackerTest {
         item = new Item("third", "fourthDescription");
         tracker.add(item);
 
-        Item[] itemForDelete = tracker.findByName("third");
+        List<Item> itemForDelete = tracker.findByName("third");
         for (Item i:itemForDelete) {
             tracker.delete(i.getId());
         }
-        assertThat(tracker.findAll().length, is(2));
+        assertThat(tracker.findAll().size(), is(2));
     }
 }
