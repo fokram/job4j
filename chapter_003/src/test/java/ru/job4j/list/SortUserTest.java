@@ -25,12 +25,12 @@ public class SortUserTest {
     }
     @Test
     public void whenAddThreeSortByNameLength() {
-        Comparator<User> userComparator = new UserComparatorByNameLength();
         List<User> result = new ArrayList();
         result.add(new User("Ivan", 4));
         result.add(new User("Andrew", 10));
         result.add(new User("Joh", 1));
-        result.sort(userComparator);
+        SortUser su = new SortUser();
+        result = su.sortNameLength(result);
         List<User> expected = new ArrayList<>();
         expected.add(new User("Joh", 1));
         expected.add(new User("Ivan", 4));
@@ -42,19 +42,19 @@ public class SortUserTest {
     }
     @Test
     public void whenAddThreeSortByAllFields() {
-        Comparator<User> userComparator = new UserComparatorByAge().thenComparing(new UserComparatorByName());
         List<User> result = new ArrayList<>();
         result.add(new User("Ivan", 5));
         result.add(new User("Ivan", 4));
         result.add(new User("John", 1));
         result.add(new User("Andrew", 10));
-        result.sort(userComparator);
+        SortUser su = new SortUser();
+        result = su.sortByAllFields(result);
+
         List<User> expected = new ArrayList<>();
         expected.add(new User("John", 1));
         expected.add(new User("Ivan", 4));
         expected.add(new User("Ivan", 5));
         expected.add(new User("Andrew", 10));
-
         int n = 0;
         for (User user:result) {
             assertThat(user.getName(), is(expected.get(n).getName()));
