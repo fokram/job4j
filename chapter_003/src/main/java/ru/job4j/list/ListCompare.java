@@ -6,7 +6,7 @@ public class ListCompare implements Comparator<String> {
     @Override
     public int compare(String left, String right) {
         int result = 0;
-        for (int i = 0; i < left.length() && result == 0; i++) {
+        for (int i = 0; i < Math.min(left.length(), right.length()) && result == 0; i++) {
             if (right.length() <= i) {
                 result = -1;
                 break;
