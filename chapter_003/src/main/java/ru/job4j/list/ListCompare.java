@@ -12,11 +12,6 @@ public class ListCompare implements Comparator<String> {
                 break;
             }
             result = Character.compare(left.charAt(i), right.charAt(i));
-            if (result < 0) {
-                result = -1;
-            } else if (result > 0) {
-                result = 1;
-            }
             if (result != 0) {
                 break;
             }
