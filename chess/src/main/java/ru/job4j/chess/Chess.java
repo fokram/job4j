@@ -60,8 +60,8 @@ public class Chess extends Application {
         rect.setOnMouseReleased(
                 event -> {
                     boolean isSuccessStep = false;
-                    try{isSuccessStep = logic.move(this.findBy(momento.getX(), momento.getY()), this.findBy(event.getX(), event.getY()));
-
+                    try {
+                        isSuccessStep = logic.move(this.findBy(momento.getX(), momento.getY()), this.findBy(event.getX(), event.getY()));
                     } catch (ImpossibleMoveException ime) {
                         System.out.println("Эта фигура так не ходит");
                     } catch (OccupiedWayException owe) {
