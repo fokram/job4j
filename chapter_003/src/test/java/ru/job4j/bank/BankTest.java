@@ -10,6 +10,7 @@ public class BankTest {
     public void whenTransfer120of100ThenFalse() {
         Bank bank = new Bank();
         bank.addUser(new User("Ivan", "123456"));
+        bank.addUser(new User("Ivan", "123456"));
         bank.addUser(new User("Andrew", "987"));
         bank.addUser(new User("Petr", "jhgfvbyt"));
         bank.addAccountToUser("123456", new Account("100500", 100));
