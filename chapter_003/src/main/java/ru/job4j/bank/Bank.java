@@ -69,8 +69,8 @@ public class Bank {
         //аккаунт-получатель
         Account destAccount = findAccountByRequisitesAndPassport(destRequisite, destPassport);
         //если получается изменить баланс и он не отрицательный - переводим деньги по назначению
-        if (srcAccount != null && destAccount != null && srcAccount.setValue(srcAccount.getValue() - amount)) {
-            result = destAccount.setValue(destAccount.getValue() + amount);
+        if (srcAccount != null && destAccount != null) {
+            result = srcAccount.transfer(destAccount, amount);
         }
         return result;
     }

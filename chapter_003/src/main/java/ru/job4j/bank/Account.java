@@ -14,15 +14,19 @@ public class Account {
         return value;
     }
 
-    public boolean setValue(double value) {
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public boolean transfer(Account destAccount, double amount) {
         boolean result = false;
-        if (value >= 0) {
-            this.value = value;
+        if (this.getValue() - amount >= 0) {
+            this.setValue(this.getValue() - amount);
+            destAccount.setValue(destAccount.getValue() + amount);
             result = true;
         }
         return result;
     }
-
     public String getRequisites() {
         return requisites;
     }
