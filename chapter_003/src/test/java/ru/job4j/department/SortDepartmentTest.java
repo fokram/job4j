@@ -10,8 +10,9 @@ import static org.junit.Assert.assertThat;
 
 public class SortDepartmentTest {
     SortDepartment sd = new SortDepartment();
+
     @Before
-    public void pre () {
+    public void pre() {
         sd.add("K1\\SK1");
         sd.add("K1\\SK2");
         sd.add("K1\\SK1\\SSK1");
@@ -20,9 +21,10 @@ public class SortDepartmentTest {
         sd.add("K2\\SK1\\SSK1");
         sd.add("K2\\SK1\\SSK2");
     }
+
     @Test
     public void whenAddDesc() {
-        TreeSet<Department> ts = new TreeSet<> (sd.departmentComparatorDesc);
+        TreeSet<Department> ts = new TreeSet<>(sd.departmentComparatorDesc);
         ts.addAll(sd.getDepartmetns());
         int result = 1;
         String[] expectedList = {"K2",
@@ -43,6 +45,7 @@ public class SortDepartmentTest {
         }
         assertThat(result, is(1));
     }
+
     @Test
     public void whenAddAsc() {
         int result = 1;
