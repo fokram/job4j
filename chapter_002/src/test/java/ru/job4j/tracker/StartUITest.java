@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.function.Consumer;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -24,10 +25,16 @@ public class StartUITest {
             .append("5. Find all item by name.\n")
             .append("6. Exit.\n");
 
-    // получаем ссылку на стандартный вывод в консоль.
-    private final PrintStream stdout = System.out;
     // Создаем буфур для хранения вывода.
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    private final PrintStream stdout = new PrintStream(out);
+    private final Consumer<String> output = new Consumer<String>() {
+        @Override
+        public void accept(String s) {
+            stdout.println(s);
+        }
+    };
 
     @Before
     public void loadOutput() {
@@ -42,7 +49,7 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});   //создаём StubInput с последовательностью действий
-        new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
+        new StartUI(input, tracker, output).init();     //   создаём StartUI и вызываем метод init()
         assertThat(tracker.findAll().get(0).getName(), is("test name")); // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
     }
 
@@ -53,7 +60,7 @@ public class StartUITest {
         //создаём StubInput с последовательностью действий(производим замену заявки)
         Input input = new StubInput(new String[]{"2", item.getId(), "test replace", "заменили заявку", "y"});
         // создаём StartUI и вызываем метод init()
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
         assertThat(tracker.findById(item.getId()).getName(), is("test replace"));
     }
@@ -71,7 +78,7 @@ public class StartUITest {
         //создаём StubInput с последовательностью действий(производим замену заявки)
         Input input = new StubInput(new String[]{"3", item.getId(), "y"});
         // создаём StartUI и вызываем метод init()
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         // проверяем, что удаленного элемента массива в трекере больше нет.
         assertThat(tracker.findById(item.getId()), is(IsNull.nullValue()));
     }
@@ -89,15 +96,15 @@ public class StartUITest {
         //создаём StubInput с последовательностью действий(производим замену заявки)
         Input input = new StubInput(new String[]{"4", "987654", "y"});
         // создаём StartUI и вызываем метод init()
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()),
-                is(
-                        new StringBuilder()
-                                .append(menuString)
-                                .append("------------ Поиск заявки по идендификатору --------------\n")
-                                .append("ID заявки: 987654; Имя заявки: test2 name; Описание заявки: desc2\n")
-                                .toString()
-                ));
+        new StartUI(input, tracker, output).init();
+        assertThat(this.out.toString(),
+                is(new StringBuilder()
+                        .append(menuString)
+                        .append("------------ Поиск заявки по идендификатору --------------\n")
+                        .append("ID заявки: 987654; Имя заявки: test2 name; Описание заявки: desc2\n")
+                        .toString()
+                )
+        );
     }
 
     @Test
@@ -116,15 +123,14 @@ public class StartUITest {
         //создаём StubInput с последовательностью действий(производим замену заявки)
         Input input = new StubInput(new String[]{"5", "test2 name", "y"});
         // создаём StartUI и вызываем метод init()
-        new StartUI(input, tracker).init();
-        assertThat(new String(out.toByteArray()),
-                is(
-                        new StringBuilder()
-                                .append(menuString)
-                                .append("------------ Поиск заявки по имени --------------\n")
-                                .append("ID заявки: 222; Имя заявки: test2 name; Описание заявки: desc2\n")
-                                .append("ID заявки: 444; Имя заявки: test2 name; Описание заявки: desc4\n")
-                                .toString()
+        new StartUI(input, tracker, output).init();
+        assertThat(this.out.toString(),
+                is(new StringBuilder()
+                        .append(menuString)
+                        .append("------------ Поиск заявки по имени --------------\n")
+                        .append("ID заявки: 222; Имя заявки: test2 name; Описание заявки: desc2\n")
+                        .append("ID заявки: 444; Имя заявки: test2 name; Описание заявки: desc4\n")
+                        .toString()
                 ));
     }
 
@@ -146,17 +152,16 @@ public class StartUITest {
         //создаём StubInput с последовательностью действий(производим замену заявки)
         Input input = new StubInput(new String[]{"1", "y"});
         // создаём StartUI и вызываем метод init()
-        new StartUI(input, tracker).init();
+        new StartUI(input, tracker, output).init();
         assertThat(new String(out.toByteArray()),
-                is(
-                        new StringBuilder()
-                                .append(menuString)
-                                .append("------------ Отображение всех заявок --------------\n")
-                                .append("ID заявки: 111; Имя заявки: test1 name; Описание заявки: desc1\n")
-                                .append("ID заявки: 222; Имя заявки: test2 name; Описание заявки: desc2\n")
-                                .append("ID заявки: 333; Имя заявки: test3 name; Описание заявки: desc3\n")
-                                .append("ID заявки: 444; Имя заявки: test4 name; Описание заявки: desc4\n")
-                                .toString()
+                is(new StringBuilder()
+                        .append(menuString)
+                        .append("------------ Отображение всех заявок --------------\n")
+                        .append("ID заявки: 111; Имя заявки: test1 name; Описание заявки: desc1\n")
+                        .append("ID заявки: 222; Имя заявки: test2 name; Описание заявки: desc2\n")
+                        .append("ID заявки: 333; Имя заявки: test3 name; Описание заявки: desc3\n")
+                        .append("ID заявки: 444; Имя заявки: test4 name; Описание заявки: desc4\n")
+                        .toString()
                 ));
     }
 }
