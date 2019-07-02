@@ -20,12 +20,13 @@ public class Bank {
     //поиск пользователя в банке по паспорту
     private User findUserByPassport(String passport) {
         User result = null;
-        for (User user:bank.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                result = user;
-                break;
-            }
-        }
+        result = bank.keySet().stream().filter(user -> user.getPassport().equals(passport)).findFirst().orElse(null);
+//        for (User user:bank.keySet()) {
+//            if (user.getPassport().equals(passport)) {
+//                result = user;
+//                break;
+//            }
+//        }
         return result;
     }
 
@@ -34,12 +35,13 @@ public class Bank {
         Account result = null;
         User user = findUserByPassport(passport);
         if (user != null) {
-            for (Account account : bank.get(user)) {
-                if (account.getRequisites().equals(requisites)) {
-                    result = account;
-                    break;
-                }
-            }
+            result = bank.get(user).stream().filter(account -> account.getRequisites().equals(requisites)).findFirst().orElse(null);
+//            for (Account account : bank.get(user)) {
+//                if (account.getRequisites().equals(requisites)) {
+//                    result = account;
+//                    break;
+//                }
+//            }
         }
         return result;
     }
