@@ -26,7 +26,7 @@ public class SortDepartmentTest {
     public void whenAddDesc() {
         TreeSet<Department> ts = new TreeSet<>(sd.departmentComparatorDesc);
         ts.addAll(sd.getDepartmetns());
-        int result = 1;
+        var result = 1;
         String[] expectedList = {"K2",
                 "K2\\SK1",
                 "K2\\SK1\\SSK2",
@@ -36,8 +36,8 @@ public class SortDepartmentTest {
                 "K1\\SK1",
                 "K1\\SK1\\SSK2",
                 "K1\\SK1\\SSK1"};
-        int i = 0;
-        for (Department dept : ts) {
+        var i = 0;
+        for (var dept : ts) {
             if (!dept.getName().equals(expectedList[i++])) {
                 result = 0;
                 break;
@@ -48,7 +48,7 @@ public class SortDepartmentTest {
 
     @Test
     public void whenAddAsc() {
-        int result = 1;
+        var result = 1;
         String[] expectedList = {"K1",
                 "K1\\SK1",
                 "K1\\SK1\\SSK1",
@@ -58,8 +58,8 @@ public class SortDepartmentTest {
                 "K2\\SK1",
                 "K2\\SK1\\SSK1",
                 "K2\\SK1\\SSK2"};
-        int i = 0;
-        for (Department dept : sd.getDepartmetns()) {
+        var i = 0;
+        for (var dept : sd.getDepartmetns()) {
             if (!dept.getName().equals(expectedList[i++])) {
                 result = 0;
                 break;

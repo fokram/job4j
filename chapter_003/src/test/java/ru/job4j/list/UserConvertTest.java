@@ -13,12 +13,12 @@ public class UserConvertTest {
 
     @Test
     public void whenAddThreeUserGetMap() {
-        List<User> list = List.of(
+        var list = List.of(
                 new User(1, "Ivan", "Moscow"),
                 new User(99, "Andrew", "NewYork"),
                 new User(50, "John", "Portland"));
-        UserConvert uc = new UserConvert();
-        HashMap<Integer, User> result = new HashMap<>(uc.process(list));
+        var uc = new UserConvert();
+        var result = new HashMap<>(uc.process(list));
 
         assertThat(result.get(99).getName(), is("Andrew"));
     }

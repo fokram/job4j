@@ -14,7 +14,7 @@ public class PriorityQueue {
      */
     public void put(Task task) {
         //TODO добавить вставку в связанный список.
-        int i = 0;
+        var i = 0;
         for (i = 0; i < tasks.size(); i++) {
             if (task.getPriority() < tasks.get(i).getPriority()) {
                 break;

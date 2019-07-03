@@ -11,7 +11,7 @@ public class PhoneDictionary {
     }
 
     private boolean isContainKey(Person person, String key) {
-        boolean result = false;
+        var result = false;
         if (person.getAddress().contains(key) || person.getName().contains(key) || person.getPhone().contains(key) || person.getSurname().contains(key)) {
             result = true;
         }
@@ -24,7 +24,7 @@ public class PhoneDictionary {
      */
     public List<Person> find(String key) {
         List<Person> result = new ArrayList<>();
-        for (Person person : persons) {
+        for (var person : persons) {
             if (isContainKey(person, key)) {
                 result.add(person);
             }

@@ -11,11 +11,11 @@ import static org.junit.Assert.assertThat;
 public class SortUserTest {
     @Test
     public void whenAddThreeUserGetTreeSet() {
-        List<User> users = List.of(new User("Ivan", 4),
+        var users = List.of(new User("Ivan", 4),
                 new User("Andrew", 10),
                 new User("John", 1));
-        Set<User> result = new TreeSet<>(new SortUser().sort(users));
-        Set<User> expected = Set.of(
+        var result = new TreeSet<>(new SortUser().sort(users));
+        var expected = Set.of(
                 new User("John", 1),
                 new User("Ivan", 4),
                 new User("Andrew", 10));
@@ -24,38 +24,38 @@ public class SortUserTest {
     }
     @Test
     public void whenAddThreeSortByNameLength() {
-        List<User> result = List.of(
+        var result = List.of(
                 new User("Ivan", 4),
                 new User("Andrew", 10),
                 new User("Joh", 1));
-        SortUser su = new SortUser();
+        var su = new SortUser();
         result = su.sortNameLength(result);
-        List<User> expected = List.of(
+        var expected = List.of(
                 new User("Joh", 1),
                 new User("Ivan", 4),
                 new User("Andrew", 10));
-        int n = 0;
-        for (User user:result) {
+        var n = 0;
+        for (var user:result) {
             assertThat(user.getName(), is(expected.get(n++).getName()));
         }
     }
     @Test
     public void whenAddThreeSortByAllFields() {
-        List<User> result = List.of(
+        var result = List.of(
                 new User("Ivan", 5),
                 new User("Ivan", 4),
                 new User("John", 1),
                 new User("Andrew", 10));
-        SortUser su = new SortUser();
+        var su = new SortUser();
         result = su.sortByAllFields(result);
 
-        List<User> expected = List.of(
+        var expected = List.of(
                 new User("John", 1),
                 new User("Ivan", 4),
                 new User("Ivan", 5),
                 new User("Andrew", 10));
-        int n = 0;
-        for (User user:result) {
+        var n = 0;
+        for (var user:result) {
             assertThat(user.getName(), is(expected.get(n).getName()));
             assertThat(user.getAge(), is(expected.get(n++).getAge()));
         }
