@@ -22,37 +22,38 @@ public class Logic3T {
         }
         return result;
     }
-
-    public boolean isWinnerX() {
+    public boolean isWiner(char xOrO) {
         boolean result = false;
         // проверим все горизонтали и вертикали
         for (int i = 0; i < table.length; i++) {
-            result = this.fillBy(Figure3T::hasMarkX, 0, i, 1, 0)
-                    || this.fillBy(Figure3T::hasMarkX, i, 0, 0, 1);
+            if (xOrO == 'X') {
+                result = this.fillBy(Figure3T::hasMarkX, 0, i, 1, 0)
+                        || this.fillBy(Figure3T::hasMarkX, i, 0, 0, 1);
+            } else if (xOrO == 'O') {
+                result = this.fillBy(Figure3T::hasMarkO, 0, i, 1, 0)
+                        || this.fillBy(Figure3T::hasMarkO, i, 0, 0, 1);
+            }
             if (result) {
                 break;
             }
         }
-        return result
-                //а так же проверим 2 диагонали
-                || this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
-                || this.fillBy(Figure3T::hasMarkX, this.table.length - 1, 0, -1, 1);
+
+        //проверили горизонтали/вертикали, а теперь проверим обе диагонали
+        if (!result && xOrO == 'X') {
+            result = this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
+                    || this.fillBy(Figure3T::hasMarkX, this.table.length - 1, 0, -1, 1);
+        } else if (!result && xOrO == 'O') {
+            result = this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 1)
+                    || this.fillBy(Figure3T::hasMarkO, this.table.length - 1, 0, -1, 1);
+        }
+        return result;
+    }
+    public boolean isWinnerX() {
+        return isWiner('X');
     }
 
     public boolean isWinnerO() {
-        boolean result = false;
-        // проверим все горизонтали и вертикали
-        for (int i = 0; i < table.length; i++) {
-            result = this.fillBy(Figure3T::hasMarkO, 0, i, 1, 0)
-                    || this.fillBy(Figure3T::hasMarkO, i, 0, 0, 1);
-            if (result) {
-                break;
-            }
-        }
-        return result
-                //а так же проверим 2 диагонали
-                || this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 1)
-                || this.fillBy(Figure3T::hasMarkO, this.table.length - 1, 0, -1, 1);
+        return isWiner('O');
     }
 
     public boolean hasGap() {
