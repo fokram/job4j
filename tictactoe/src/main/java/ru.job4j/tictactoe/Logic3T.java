@@ -22,38 +22,30 @@ public class Logic3T {
         }
         return result;
     }
-    public boolean isWiner(char xOrO) {
+    public boolean isWiner(Predicate<Figure3T> predicate) {
         boolean result = false;
         // проверим все горизонтали и вертикали
         for (int i = 0; i < table.length; i++) {
-            if (xOrO == 'X') {
-                result = this.fillBy(Figure3T::hasMarkX, 0, i, 1, 0)
-                        || this.fillBy(Figure3T::hasMarkX, i, 0, 0, 1);
-            } else if (xOrO == 'O') {
-                result = this.fillBy(Figure3T::hasMarkO, 0, i, 1, 0)
-                        || this.fillBy(Figure3T::hasMarkO, i, 0, 0, 1);
-            }
+            result = this.fillBy(predicate, 0, i, 1, 0)
+                    || this.fillBy(predicate, i, 0, 0, 1);
             if (result) {
                 break;
             }
         }
 
         //проверили горизонтали/вертикали, а теперь проверим обе диагонали
-        if (!result && xOrO == 'X') {
-            result = this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
-                    || this.fillBy(Figure3T::hasMarkX, this.table.length - 1, 0, -1, 1);
-        } else if (!result && xOrO == 'O') {
-            result = this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 1)
-                    || this.fillBy(Figure3T::hasMarkO, this.table.length - 1, 0, -1, 1);
+        if (!result) {
+            result = this.fillBy(predicate, 0, 0, 1, 1)
+                    || this.fillBy(predicate, this.table.length - 1, 0, -1, 1);
         }
         return result;
     }
     public boolean isWinnerX() {
-        return isWiner('X');
+        return isWiner(p -> p.hasMarkX());
     }
 
     public boolean isWinnerO() {
-        return isWiner('O');
+        return isWiner(p -> p.hasMarkO());
     }
 
     public boolean hasGap() {
