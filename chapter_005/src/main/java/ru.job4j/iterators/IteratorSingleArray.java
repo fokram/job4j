@@ -11,44 +11,22 @@ public class IteratorSingleArray implements Iterator {
         this.arr = arr;
     }
 
-    private Integer hasNextReturnIndex() {
-        Integer result = null;
-        int i = index;
-        while (i < arr.length) {
-            if (arr[i] % 2 != 0) {
-                i++;
-            } else {
-                result = i++;
-                break;
-            }
-        }
-        return result;
-    }
     @Override
     public boolean hasNext() {
-        boolean result;
-        if (hasNextReturnIndex() != null) {
-            result = true;
-        } else {
-            result = false;
+        while (index < arr.length) {
+            if (arr[index] % 2 == 0) {
+                break;
+            }
+            index++;
         }
-        return result;
+        return index < arr.length;
     }
 
     @Override
     public Object next() {
-        Integer result;
-        Integer nextIndex = hasNextReturnIndex();
-        if (nextIndex != null) {
-            index = nextIndex;
-            result = arr[index++];
-        } else {
-            result = null;
-        }
-        if (result == null) {
+        if (!hasNext()) {
             throw new NoSuchElementException();
-        } else {
-            return result;
         }
+        return arr[index++];
     }
 }
