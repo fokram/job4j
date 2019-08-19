@@ -5,18 +5,18 @@ import java.util.Iterator;
 public class IteratorArray implements Iterator {
     private Integer indexX = 0;
     private Integer indexY = 0;
-    private int[][] values;
+    private int[][] matrix;
 
-    public IteratorArray(int[][] values) {
-        this.values = values;
+    public IteratorArray(int[][] matrix) {
+        this.matrix = matrix;
     }
 
     private boolean hasNextX() {
-        return indexX < values.length - 1;
+        return indexX < matrix.length - 1;
     }
 
     private boolean hasNextY() {
-        return indexY < values[indexX].length;
+        return indexY < matrix[indexX].length;
     }
 
     @Override
@@ -29,10 +29,10 @@ public class IteratorArray implements Iterator {
     public Object next() {
         Integer result;
         if (hasNextY()) {
-            result = values[indexX][indexY++];
+            result = matrix[indexX][indexY++];
         } else if (hasNextX()) {
             indexY = 0;
-            result = values[++indexX][indexY++];
+            result = matrix[++indexX][indexY++];
         } else {
             result = 0;
         }
