@@ -23,7 +23,7 @@ public class IteratorSingleArrayTest {
     @Test
     public void arrayHasntEvenNumbers() {
         boolean thrown = false;
-        IteratorSingleArray it = new IteratorSingleArray(new int[] {1, 3, 5, 7, 3});
+        IteratorSingleArray it = new IteratorSingleArray(new int[] {1, 3, 5, 7, 11});
         try {
             it.next();
         } catch (NoSuchElementException nsee) {
