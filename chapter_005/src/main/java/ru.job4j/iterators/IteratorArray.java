@@ -1,6 +1,7 @@
 package ru.job4j.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class IteratorArray implements Iterator {
     private Integer indexX = 0;
@@ -34,7 +35,10 @@ public class IteratorArray implements Iterator {
             indexY = 0;
             result = matrix[++indexX][indexY++];
         } else {
-            result = 0;
+            result = null;
+        }
+        if (result == null) {
+                throw new NoSuchElementException();
         }
         return result;
     }
