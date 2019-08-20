@@ -4,8 +4,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class IteratorArray implements Iterator {
-    private Integer indexX = 0;
     private Integer indexY = 0;
+    private Integer indexX = 0;
     private int[][] matrix;
 
     public IteratorArray(int[][] matrix) {
@@ -13,32 +13,28 @@ public class IteratorArray implements Iterator {
     }
 
     private boolean hasNextX() {
-        return indexX < matrix.length - 1;
+        return indexY < matrix.length;
     }
 
     private boolean hasNextY() {
-        return indexY < matrix[indexX].length;
+        return indexX < matrix[indexY].length;
     }
 
     @Override
     public boolean hasNext() {
         return hasNextX()
-                || hasNextY();
+                && hasNextY();
     }
 
     @Override
     public Object next() {
-        Integer result;
-        if (hasNextY()) {
-            result = matrix[indexX][indexY++];
-        } else if (hasNextX()) {
-            indexY = 0;
-            result = matrix[++indexX][indexY++];
-        } else {
-            result = null;
+        if (!hasNext()) {
+            throw new NoSuchElementException();
         }
-        if (result == null) {
-                throw new NoSuchElementException();
+        Integer result = matrix[indexY][indexX++];
+        if (indexX == matrix[indexY].length) {
+            indexY++;
+            indexX = 0;
         }
         return result;
     }
