@@ -11,7 +11,7 @@ public class Converter {
             Iterator currentIterator = it.next();
             @Override
             public boolean hasNext() {
-                if (!currentIterator.hasNext() && it.hasNext()) {
+                while (!currentIterator.hasNext() && it.hasNext()) {
                     currentIterator = it.next();
                 }
                 return currentIterator.hasNext();
