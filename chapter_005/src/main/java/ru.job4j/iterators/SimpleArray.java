@@ -21,7 +21,7 @@ public class SimpleArray<T> implements Iterable {
 
             @Override
             public boolean hasNext() {
-                return iteratorIndex < arr.length;
+                return iteratorIndex < ind;
             }
 
             @Override
@@ -29,16 +29,6 @@ public class SimpleArray<T> implements Iterable {
                 return arr[iteratorIndex++];
             }
         };
-    }
-
-    @Override
-    public void forEach(Consumer action) {
-
-    }
-
-    @Override
-    public Spliterator spliterator() {
-        return null;
     }
 
     public void add(T model) {
@@ -51,10 +41,7 @@ public class SimpleArray<T> implements Iterable {
     }
     public void remove(int index) {
         if (index < ind) {
-            for (int i = index; i < ind - 1; i++) {
-                arr[i] = arr[i + 1];
-            }
-            arr[ind--] = null;
+            System.arraycopy(arr, index + 1, arr, index, ind-- - index);
         }
     }
     public T get(int index) {

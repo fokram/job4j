@@ -44,4 +44,11 @@ public class SimpleArrayTest {
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is("first"));
     }
+
+    @Test
+    public void whenArrayEmptyHasNextFalse() {
+        sa = new SimpleArray(10);
+        Iterator<String> it = sa.iterator();
+        assertThat(it.hasNext(), is(false));
+    }
 }
