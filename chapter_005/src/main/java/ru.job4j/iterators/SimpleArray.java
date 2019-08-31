@@ -1,27 +1,32 @@
 package ru.job4j.iterators;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
 public class SimpleArray<T> implements Iterable {
 
     private T[] arr;
-    public int ind;
+    private int currentPosition;
 
     public SimpleArray(int size) {
         arr = (T[]) new Object[size];
-        ind = 0;
+        currentPosition = 0;
+    }
+
+    public int getLength() {
+        return currentPosition;
     }
 
     @Override
     public Iterator iterator() {
         return new Iterator() {
-            int iteratorIndex = 0;
+            private int iteratorIndex = 0;
 
             @Override
             public boolean hasNext() {
-                return iteratorIndex < ind;
+                return iteratorIndex < currentPosition;
             }
 
             @Override
@@ -32,22 +37,31 @@ public class SimpleArray<T> implements Iterable {
     }
 
     public void add(T model) {
-        arr[ind++] = model;
+        this.arr[currentPosition++] = model;
     }
-    public void set(int index, T model) {
-        if (index < ind) {
-            arr[index] = model;
+
+    public boolean set(int index, T model) {
+        boolean result = false;
+        if (index < this.currentPosition) {
+            this.arr[index] = model;
+            result = true;
         }
+        return result;
     }
-    public void remove(int index) {
-        if (index < ind) {
-            System.arraycopy(arr, index + 1, arr, index, ind-- - index);
+
+    public boolean remove(int index) {
+        boolean result = false;
+        if (index < this.currentPosition) {
+            System.arraycopy(this.arr, index + 1, this.arr, index, this.currentPosition-- - index);
+            result = true;
         }
+        return result;
     }
+
     public T get(int index) {
         T result = null;
-        if (index < ind) {
-            result = arr[index];
+        if (index < this.currentPosition) {
+            result = this.arr[index];
         }
         return result;
     }

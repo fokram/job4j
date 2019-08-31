@@ -13,11 +13,11 @@ public class IteratorArray implements Iterator {
     }
 
     private boolean hasNextX() {
-        return indexY < matrix.length;
+        return this.indexY < this.matrix.length;
     }
 
     private boolean hasNextY() {
-        return indexX < matrix[indexY].length;
+        return this.indexX < this.matrix[this.indexY].length;
     }
 
     @Override
@@ -31,10 +31,10 @@ public class IteratorArray implements Iterator {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        Integer result = matrix[indexY][indexX++];
-        if (indexX == matrix[indexY].length) {
-            indexY++;
-            indexX = 0;
+        Integer result = this.matrix[this.indexY][this.indexX++];
+        if (this.indexX == this.matrix[this.indexY].length) {
+            this.indexY++;
+            this.indexX = 0;
         }
         return result;
     }

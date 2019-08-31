@@ -7,19 +7,19 @@ public class IteratorSingleArray implements Iterator {
     private int[] arr;
     private int index = 0;
 
-    public IteratorSingleArray(int[] arr) {
-        this.arr = arr;
+    public IteratorSingleArray(int[] arrayInt) {
+        this.arr = arrayInt;
     }
 
     @Override
     public boolean hasNext() {
-        while (index < arr.length) {
-            if (arr[index] % 2 == 0) {
+        while (this.index < this.arr.length) {
+            if (this.arr[this.index] % 2 == 0) {
                 break;
             }
-            index++;
+            this.index++;
         }
-        return index < arr.length;
+        return this.index < this.arr.length;
     }
 
     @Override
@@ -27,6 +27,6 @@ public class IteratorSingleArray implements Iterator {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        return arr[index++];
+        return this.arr[this.index++];
     }
 }
