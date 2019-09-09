@@ -31,13 +31,7 @@ public class RoleStoreTest {
         boolean thrown = false;
 
         assertThat(us.replace("third", new Role("newThird")), is(true));
-
-        try {
-            us.replace("third", new Role("newThird"));
-        } catch (NoSuchElementException nsee) {
-            thrown = true;
-        }
-        assertThat(thrown, Is.is(true));
+        assertThat(us.replace("third", new Role("newThird")), Is.is(false));
     }
 
     @Test

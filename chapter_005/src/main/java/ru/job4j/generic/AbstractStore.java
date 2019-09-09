@@ -29,24 +29,36 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
             }
             idx++;
         }
-        if (result == -1) {
-            throw new NoSuchElementException();
-        }
         return result;
     }
 
     @Override
     public boolean replace(String id, T model) {
-        return sa.set(getArrayIndex(id), model);
+        boolean result = false;
+        int arrayIndex = getArrayIndex(id);
+        if (arrayIndex != -1) {
+            result = sa.set(getArrayIndex(id), model);
+        }
+        return result;
     }
 
     @Override
     public T findById(String id) {
-        return sa.get(getArrayIndex(id));
+        T result = null;
+        int arrayIndex = getArrayIndex(id);
+        if (arrayIndex != -1) {
+            result = sa.get(getArrayIndex(id));
+        }
+        return result;
     }
 
     @Override
     public boolean remove(String id) {
-        return sa.remove(getArrayIndex(id));
+        boolean result = false;
+        int arrayIndex = getArrayIndex(id);
+        if (arrayIndex != -1) {
+            result = sa.remove(getArrayIndex(id));
+        }
+        return result;
     }
 }

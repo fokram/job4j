@@ -31,13 +31,7 @@ public class UserStoreTest {
         boolean thrown = false;
 
         assertThat(us.replace("third", new User("newThird")), is(true));
-
-        try {
-            us.replace("third", new User("newThird"));
-        } catch (NoSuchElementException nsee) {
-            thrown = true;
-        }
-        assertThat(thrown, Is.is(true));
+        assertThat(us.replace("third", new User("newThird")), Is.is(false));
     }
 
     @Test
