@@ -5,10 +5,14 @@ import ru.job4j.iterators.SimpleArray;
 import java.util.NoSuchElementException;
 
 public abstract class AbstractStore<T extends Base> implements Store<T> {
-    SimpleArray<T> sa;
+    private final SimpleArray<T> sa;
 
     public AbstractStore(int sizeArray) {
         this.sa = new SimpleArray(sizeArray);
+    }
+
+    public int getSize() {
+        return sa.getLength();
     }
 
     public void add(T t) {

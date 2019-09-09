@@ -43,7 +43,7 @@ public class UserStoreTest {
     @Test
     public void whenDeleteThenArrayDecreased() {
         us.remove("third");
-        assertThat(us.sa.getLength(), is(3));
+        assertThat(us.getSize(), is(3));
     }
 
 
