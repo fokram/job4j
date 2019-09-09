@@ -29,7 +29,7 @@ public class SimpleArrayListTest {
 
     @Test
     public void whenDeleteThenUseGetOneResultTwo() {
-        assertThat(list.delete(), is(2));
+        assertThat(list.delete(), is(3));
         assertThat(list.getSize(), is(2));
     }
 }
