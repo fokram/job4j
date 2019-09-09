@@ -22,9 +22,9 @@ public class SimpleArrayList<E> {
         E deletedItem = null;
         if (this.size != 0) {
             deletedItem = get(0);
+            this.first = this.first.next;
+            this.size--;
         }
-        this.first = this.first.next;
-        this.size--;
         return deletedItem;
     }
 

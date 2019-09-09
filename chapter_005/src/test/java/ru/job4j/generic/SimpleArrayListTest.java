@@ -32,4 +32,10 @@ public class SimpleArrayListTest {
         assertThat(list.delete(), is(3));
         assertThat(list.getSize(), is(2));
     }
+
+    @Test
+    public void whenDeleteEmptyArrayThenNull() {
+        SimpleArrayList<Integer> list2 = new SimpleArrayList<>();
+        assertThat(list2.delete(), is((Integer) null));
+    }
 }
