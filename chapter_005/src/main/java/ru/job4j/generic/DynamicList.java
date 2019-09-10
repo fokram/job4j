@@ -9,9 +9,13 @@ public class DynamicList<E> implements Iterable<E> {
     private int index = 0;
     private int modCount = 0;
 
+    private void extendArray(int extendedSize) {
+        this.container = Arrays.copyOf(this.container, this.container.length + extendedSize);
+    }
+
     public void add(E value) {
         if (this.container.length - 1 <= this.index) {
-            this.container = Arrays.copyOf(this.container, this.container.length + 10);
+            extendArray(10);
         }
         this.container[this.index++] = value;
         modCount++;
