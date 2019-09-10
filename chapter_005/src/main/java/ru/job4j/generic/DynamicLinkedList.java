@@ -5,35 +5,45 @@ import java.util.Iterator;
 
 public class DynamicLinkedList<E> implements Iterable<E> {
     private SimpleArrayList<E> linkedList = new SimpleArrayList<E>();
-    private int index;
     private int modCount;
 
     public void add(E value) {
         linkedList.add(value);
-        this.index++;
         modCount++;
     }
 
     public E get(int index) {
         E result = null;
-        if (index < this.index) {
-            result = (E) linkedList.get(this.index - index - 1);
+        if (index < linkedList.getSize()) {
+            result = (E) linkedList.get(linkedList.getSize() - index - 1);
         }
         return result;
     }
 
-    public E poll() {
+    public E pollStack() {
         E result = null;
-        if (this.index != 0) {
-            result = (E) linkedList.get(0);
-            linkedList.delete();
+        if (linkedList.getSize() != 0) {
+            result = linkedList.delete(0);
         }
         return result;
+    }
+
+    public E pollQueue() {
+        E result = null;
+        if (linkedList.getSize() != 0) {
+            result = linkedList.delete(linkedList.getSize() - 1);
+        }
+        return result;
+    }
+
+    public void delete(int index) {
+        linkedList.delete(index);
     }
 
     protected int getSize() {
-        return this.index;
+        return linkedList.getSize();
     }
+
     @Override
     public Iterator<E> iterator() {
         int fixedModCount = this.modCount;
@@ -44,7 +54,7 @@ public class DynamicLinkedList<E> implements Iterable<E> {
                 if (fixedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return iteratorIndex < index;
+                return iteratorIndex < linkedList.getSize();
             }
 
             @Override

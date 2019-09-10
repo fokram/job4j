@@ -1,10 +1,10 @@
 package ru.job4j.generic;
 
-public class SimpleStack<E> {
+public class SimpleQueue<E> {
     private DynamicLinkedList<E> dll = new DynamicLinkedList();
 
     public E poll() {
-        return dll.pollStack();
+        return dll.pollQueue();
     }
 
     public void push(E value) {
@@ -14,4 +14,5 @@ public class SimpleStack<E> {
     public int getSize() {
         return dll.getSize();
     }
+
 }

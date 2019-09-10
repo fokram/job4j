@@ -29,13 +29,20 @@ public class SimpleArrayListTest {
 
     @Test
     public void whenDeleteThenUseGetOneResultTwo() {
-        assertThat(list.delete(), is(3));
+        assertThat(list.delete(0), is(3));
         assertThat(list.getSize(), is(2));
     }
 
     @Test
     public void whenDeleteEmptyArrayThenNull() {
         SimpleArrayList<Integer> list2 = new SimpleArrayList<>();
-        assertThat(list2.delete(), is((Integer) null));
+        assertThat(list2.delete(0), is((Integer) null));
+    }
+
+    @Test
+    public void whenDeleteMiddleDeletedAccuracty() {
+        assertThat(list.delete(1), is(2));
+        list.delete(1);
+        assertThat(list.getSize(), is(1));
     }
 }

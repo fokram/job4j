@@ -6,8 +6,9 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
-public class SimpleStackTest {
-    SimpleStack<String> stack = new SimpleStack<>();
+public class SimpleQueueTest {
+
+    SimpleQueue<String> stack = new SimpleQueue<>();
 
     @Before
     public void setUp() {
@@ -24,16 +25,17 @@ public class SimpleStackTest {
 
     @Test
     public void poll() {
-        assertThat(stack.poll(), is("nine"));
+        assertThat(stack.poll(), is("one"));
+        assertThat(stack.poll(), is("two"));
     }
 
     @Test
     public void push() {
         stack.push("ten");
         assertThat(stack.getSize(), is(10));
-        assertThat(stack.poll(), is("ten"));
+        assertThat(stack.poll(), is("one"));
         assertThat(stack.getSize(), is(9));
-        assertThat(stack.poll(), is("nine"));
+        assertThat(stack.poll(), is("two"));
         assertThat(stack.getSize(), is(8));
     }
 }

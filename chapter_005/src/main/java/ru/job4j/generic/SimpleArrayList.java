@@ -18,11 +18,17 @@ public class SimpleArrayList<E> {
     /**
      * Реализовать метод удаления первого элемент в списке.
      */
-    public E delete() {
+    public E delete(int index) {
         E deletedItem = null;
-        if (this.size != 0) {
-            deletedItem = get(0);
-            this.first = this.first.next;
+        if (this.size > index) {
+            deletedItem = get(index);
+            if (index == 0) {
+                this.first = this.first.next;
+            } else if (index == this.size - 1) {
+                getNode(index - 1).next = null;
+            } else {
+                getNode(index - 1).next = getNode(index + 1);
+            }
             this.size--;
         }
         return deletedItem;
@@ -31,12 +37,15 @@ public class SimpleArrayList<E> {
     /**
      * Метод получения элемента по индексу.
      */
-    public E get(int index) {
+    public Node<E> getNode(int index) {
         Node<E> result = this.first;
         for (int i = 0; i < index; i++) {
             result = result.next;
         }
-        return result.data;
+        return result;
+    }
+    public E get(int index) {
+        return getNode(index).data;
     }
 
     /**
