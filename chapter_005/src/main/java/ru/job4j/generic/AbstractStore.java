@@ -37,7 +37,7 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
         boolean result = false;
         int arrayIndex = getArrayIndex(id);
         if (arrayIndex != -1) {
-            result = sa.set(getArrayIndex(id), model);
+            result = sa.set(arrayIndex, model);
         }
         return result;
     }
@@ -47,7 +47,7 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
         T result = null;
         int arrayIndex = getArrayIndex(id);
         if (arrayIndex != -1) {
-            result = sa.get(getArrayIndex(id));
+            result = sa.get(arrayIndex);
         }
         return result;
     }
@@ -57,7 +57,7 @@ public abstract class AbstractStore<T extends Base> implements Store<T> {
         boolean result = false;
         int arrayIndex = getArrayIndex(id);
         if (arrayIndex != -1) {
-            result = sa.remove(getArrayIndex(id));
+            result = sa.remove(arrayIndex);
         }
         return result;
     }
