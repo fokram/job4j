@@ -15,7 +15,20 @@ public class DynamicLinkedList<E> implements Iterable<E> {
     }
 
     public E get(int index) {
-        return (E) linkedList.get(this.index - index - 1);
+        E result = null;
+        if (index < this.index) {
+            result = (E) linkedList.get(this.index - index - 1);
+        }
+        return result;
+    }
+
+    public E poll() {
+        E result = null;
+        if (this.index != 0) {
+            result = (E) linkedList.get(0);
+            linkedList.delete();
+        }
+        return result;
     }
 
     protected int getSize() {
