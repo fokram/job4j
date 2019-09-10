@@ -2,7 +2,7 @@ package ru.job4j.generic;
 
 public class SimpleArrayList<E> {
 
-    private int size;
+    private int size = 0;
     private Node<E> first;
 
     /**
