@@ -28,13 +28,13 @@ public class DynamicLinkedList<E> implements Iterable<E> {
         return result;
     }
 
-    public E pollQueue() {
-        E result = null;
-        if (linkedList.getSize() != 0) {
-            result = linkedList.delete(linkedList.getSize() - 1);
-        }
-        return result;
-    }
+//    public E pollQueue() {
+//        E result = null;
+//        if (linkedList.getSize() != 0) {
+//            result = linkedList.delete(linkedList.getSize() - 1);
+//        }
+//        return result;
+//    }
 
     public void delete(int index) {
         linkedList.delete(index);
