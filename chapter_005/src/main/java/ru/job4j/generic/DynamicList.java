@@ -37,6 +37,7 @@ public class DynamicList<E> implements Iterable<E> {
         int fixedModCount = this.modCount;
         return new Iterator<E>() {
             private int iteratorIndex = 0;
+
             @Override
             public boolean hasNext() {
                 if (fixedModCount != modCount) {
