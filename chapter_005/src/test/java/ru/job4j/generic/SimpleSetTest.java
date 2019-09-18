@@ -26,10 +26,24 @@ public class SimpleSetTest {
         set.add("two");
         Iterator<String> it = set.iterator();
         while (it.hasNext()) {
-            if (it.next() == "two") {
+            if (it.next().equals("two")) {
                 foundElement++;
             }
         }
         assertThat(foundElement, is(1));
+    }
+
+    @Test
+    public void whenNullThen() {
+        SimpleSet<Integer> set = new SimpleSet<>();
+        set.add(1);
+        set.add(null);
+        set.add(2);
+        set.add(null);
+        set.add(1);
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
     }
 }

@@ -13,7 +13,9 @@ public class SimpleSet<E> implements Iterable<E> {
         Iterator it = dl.iterator();
 
         while (it.hasNext()) {
-            if (value == it.next()) {
+            E nextVal = (E) it.next();
+            if (nextVal == null & value == null
+                    || value != null && value.equals(nextVal)) {
                 result = true;
                 break;
             }
