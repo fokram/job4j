@@ -24,4 +24,9 @@ public class User {
     public Calendar getBirthday() {
         return birthday;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
 }
