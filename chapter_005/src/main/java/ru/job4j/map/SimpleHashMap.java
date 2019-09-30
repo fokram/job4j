@@ -53,9 +53,12 @@ public class SimpleHashMap<K, V> implements Iterable<NodeKV> {
             if (this.capacityUsed >= this.capacity * this.loadFactor) {
                 extendCapacityAndRebuild();
             }
-            table[index] = new NodeKV(key, value);
+            table[index] = new NodeKV<>(key, value);
             capacityUsed++;
             modCount++;
+            result = true;
+        } else if (table[index].getKey().equals(key)) {
+            table[index] = new NodeKV<>(key, value);
             result = true;
         }
         return result;
@@ -69,7 +72,7 @@ public class SimpleHashMap<K, V> implements Iterable<NodeKV> {
         boolean result = false;
         Integer index = getIndex(key);
 
-        if (table[index].getKey() == key) {
+        if (table[index].getKey().equals(key)) {
             table[index] = null;
             capacityUsed--;
             result = true;

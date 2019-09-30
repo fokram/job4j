@@ -37,10 +37,10 @@ public class SimpleHashMapTest {
         assertThat(this.table.getIndex("first"), not(index));
     }
 
-
     @Test
-    public void whenAddExistingElementThanFalse() {
-        assertThat(this.table.insert("sixteenth", 16), is(false));
+    public void whenAddExistingElementThanReplace() {
+        assertThat(this.table.get("sixteenth"), is(16));
+        assertThat(this.table.insert("sixteenth", 1999), is(true));
+        assertThat(this.table.get("sixteenth"), is(1999));
     }
-
 }
