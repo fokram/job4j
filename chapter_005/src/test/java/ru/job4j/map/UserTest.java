@@ -18,7 +18,7 @@ public class UserTest {
     public void whenCompareTwoTheSameUsers() {
         System.out.println(user);
         System.out.println(user2);
-        assertThat(user.equals(user2), is(false));
+        assertThat(user.equals(user2), is(true));
     }
 
     @Test
