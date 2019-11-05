@@ -5,6 +5,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.*;
+
 
 public class AnalizeTest {
 
@@ -26,9 +29,9 @@ public class AnalizeTest {
 
         Analize.Info a = new Analize().diff(previous, current);
 
-        System.out.println("Added:" + a.getAdded());
-        System.out.println("Deleted:" + a.getDeleted());
-        System.out.println("Changed:" + a.getChanged());
+        assertThat(a.getAdded(), is(2));
+        assertThat(a.getChanged(), is(1));
+        assertThat(a.getDeleted(), is(4));
     }
 
 }

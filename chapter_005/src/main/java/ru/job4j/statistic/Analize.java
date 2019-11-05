@@ -1,37 +1,36 @@
 package ru.job4j.statistic;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Analize {
 
     public Info diff(List<User> previous, List<User> current) {
         Info result = new Info();
+
+        Map<Integer, String> prevMap = previous
+                .stream()
+                .collect(Collectors.toMap(User::getId, User::getName));
+        Map<Integer, String> currMap = current
+                .stream()
+                .collect(Collectors.toMap(User::getId, User::getName));
+
         //deleted and/or changed
         for (User userPrevious : previous) {
-            boolean founded = false;
-            for (User userCurrent : current) {
-                if (userPrevious.getId() == userCurrent.getId()) {
-                    founded = true;
-                    if (userPrevious.getName() != userCurrent.getName()) {
-                        result.changed++;
-                    }
-                    break;
+            if (currMap.containsKey(userPrevious.id)) {
+                if (!userPrevious.name.equals(currMap.get(userPrevious.id))) {
+                    result.changed++;
                 }
-            }
-            if (!founded) {
+            } else {
                 result.deleted++;
             }
         }
 
+        //added
         for (User userCurrent : current) {
-            boolean founded = false;
-            for (User userPrevious : previous) {
-                if (userPrevious.getId() == userCurrent.getId()) {
-                    founded = true;
-                    break;
-                }
-            }
-            if (!founded) {
+            if (!prevMap.containsKey(userCurrent.id)) {
                 result.added++;
             }
         }
@@ -53,6 +52,24 @@ public class Analize {
 
         public String getName() {
             return name;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            User user = (User) o;
+            return id == user.id
+                    && Objects.equals(name, user.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(id);
         }
     }
 
