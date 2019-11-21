@@ -23,12 +23,12 @@ public class AnalizyTest {
         FileWriter wr = null;
         try {
             wr = new FileWriter(src);
-            wr.write("200 10:56:01\n" +
-                    "500 10:57:01\n" +
-                    "400 10:58:01\n" +
-                    "200 10:59:01\n" +
-                    "500 11:01:02\n" +
-                    "200 11:02:02");
+            wr.write("200 10:56:01\n"
+                    + "500 10:57:01\n"
+                    + "400 10:58:01\n"
+                    + "200 10:59:01\n"
+                    + "500 11:01:02\n"
+                    + "200 11:02:02");
             wr.close();
             a.unavailable(src, trg);
         } catch (IOException e) {
