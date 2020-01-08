@@ -13,11 +13,9 @@ public class Analizy {
     public void unavailable(String source, String target) {
         List<String> listFile = read(source);
         String problemAppear = "";
-        FileWriter wr = null;
 
-        try {
-            wr = new FileWriter(target);
-            for (String line: listFile) {
+        try (FileWriter wr = new FileWriter(target)) {
+                for (String line: listFile) {
                 String[] str = line.split(" ");
                 if (str.length == 2) {
                     if (badStatus.contains(str[0]) && problemAppear.isEmpty()) {
@@ -30,21 +28,7 @@ public class Analizy {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                wr.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
-
-
-//        while ((line = buffer.readLine()) != null) {
-//            String[] str = line.split(" ");
-//            if (str.length == 2) {
-//
-//            }
-//        }
     }
 
     private List<String> read(String path) {
@@ -58,7 +42,7 @@ public class Analizy {
     }
 
     public static void main(String[] args) {
-        try (FileWriter fw = new FileWriter("/Users/r.markov/projects/job4j/unavailable.csv")) {
+        try (FileWriter fw = new FileWriter("unavailable.csv")) {
             fw.append("15:01:30;15:02:32");
             fw.append("15:10:30;23:12:32");
         } catch (Exception e) {

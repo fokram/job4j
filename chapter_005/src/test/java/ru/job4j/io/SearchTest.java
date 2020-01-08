@@ -14,11 +14,11 @@ public class SearchTest {
     public void whenFindShGotIt() {
         Search s = new Search();
         List<File> listFiles = s.files("/Users/r.markov/projects/job4j/chapter_005/src/main/java/ru/job4j/io/tmpdir", Arrays.asList("csv", "sh"));
-        assertThat(listFiles.size(), is(6));
+        assertThat(listFiles.size(), is(5));
 
         listFiles = s.files("/Users/r.markov/projects/job4j/chapter_005/src/main/java/ru/job4j/io/tmpdir", Arrays.asList("", "sh"));
         assertThat(listFiles.size(), is(2));
 
-        listFiles.stream().map(File::getName).forEach(System.out::println);
+//        listFiles.stream().map(File::getName).forEach(System.out::println);
     }
 }

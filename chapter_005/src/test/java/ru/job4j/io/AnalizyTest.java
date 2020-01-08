@@ -3,11 +3,8 @@ package ru.job4j.io;
 import org.junit.Test;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
@@ -16,8 +13,8 @@ public class AnalizyTest {
 
     @Test
     public void whenAnalizeThenGetOutFile() {
-        String src = "/Users/r.markov/projects/job4j/log.csv";
-        String trg = "/Users/r.markov/projects/job4j/unavailable.csv";
+        String src = "log.csv";
+        String trg = "unavailable.csv";
 
         Analizy a = new Analizy();
         FileWriter wr = null;
